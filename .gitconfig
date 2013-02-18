@@ -1,0 +1,28 @@
+[user]
+	name = Ralph Allan Rice
+	email = ralph.rice@gmail.com
+[core]
+	autocrlf = false
+	safecrlf = false
+
+[alias]
+	# Some simpler shortcuts
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+
+        # Two types of history
+	# hist - shows the last 10 commits.
+	# histall - shows all commits.
+	hist = log -n 10 --pretty=format:\"%C(red)%h%Creset %C(yellow)%ad%Creset | %C(dim cyan)%an%Creset | %s%C(bold green)%d%Creset\" --graph --date=short
+	histall = log --pretty=format:\"%C(red)%h%Creset %C(yellow)%ad%Creset | %C(dim cyan)%an%Creset | %s%C(bold green)%d%Creset\" --graph --date=short
+	
+	type = cat-file -t
+	dump = cat-file -p
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+
