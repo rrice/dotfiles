@@ -1,0 +1,18 @@
+; -*- mode: Lisp;-*-
+
+;; Debug mode
+(sb-ext:restrict-compiler-policy 'debug 3)
+
+;;
+;; Quicklisp setup
+;; http://www.quicklisp.org
+;;
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+(asdf:initialize-source-registry)
+
+
