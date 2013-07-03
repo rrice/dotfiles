@@ -22,11 +22,10 @@
   (set-face-background 'default "Black")
   (set-face-background 'region "SlateBlue")
   (set-face-background 'highlight "DarkSlateBlue")
-  (set-face-background 'modeline "DarkSlateBlue") ;;; CornflowerBlue")
   (set-face-foreground 'default "Ivory")
   (set-face-foreground 'region "Ivory")
-  (set-face-foreground 'highlight "LightGray")  ;;; DimGray")
-  (set-face-foreground 'modeline "LightGray"))
+  (set-face-foreground 'highlight "LightGray"))
+
 
 ;;
 ;; Disable backup
@@ -113,7 +112,7 @@
 ;;
 ;; Erlang
 ;;
-(require 'erlang-start)
+;;(require 'erlang-start)
 
 ;;
 ;; Javascript
