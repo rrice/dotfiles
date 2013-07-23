@@ -138,7 +138,20 @@
 ;; Haskell
 ;;
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(setq interpreter-mode-alist
+      (append interpreter-mode-alist
+	      '(("^#!.*runhugs" . haskell-mode)
+		("^#!.*runghc" . haskell-mode)
+		("^#!.*runhaskell" . haskell-mode))))
+(add-hook 'haskell-mode-hook 'turn-on-font-lock)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
+; Other hooks to consider
+;
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 
 ;;
