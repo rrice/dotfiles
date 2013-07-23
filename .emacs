@@ -34,6 +34,51 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;;
+;; Dependent packages
+;;
+
+(defvar my-packages
+  '( markdown-mode
+     edit-server
+     paredit
+     tidy
+     scala-mode
+     feature-mode
+     js2-mode
+     haskell-mode
+     slime
+     redshank
+     slime-js
+     tfs
+     uuid
+     virtualenv
+     yaml-mode
+     yasnippet-bundle
+     rspec-mode
+     jinja2-mode
+     graphviz-dot-mode
+     erlang
+     csharp-mode
+     csv-mode
+     crontab-mode
+     chicken-scheme
+     auto-complete))
+
+;;
+;; Ensure that my packages are installed
+;;
+(require 'package)
+(package-initialize)
+(mapc (lambda (package-name)
+	(or (package-installed-p package-name)
+	    (if (y-or-n-p (format "Package '%s' is not installed. Do you want to install? " package-name))
+		(package-install package-name)
+	      (message "Package '%s' already installed." package-name))))
+      my-packages)
+
+
+
+;;
 ;; Disable backup
 ;;
 (setq backup-inhibited t)
