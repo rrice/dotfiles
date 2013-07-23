@@ -26,6 +26,12 @@
   (set-face-foreground 'region "Ivory")
   (set-face-foreground 'highlight "LightGray"))
 
+;;
+;; Package repositories
+;;
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;;
 ;; Disable backup
