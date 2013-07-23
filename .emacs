@@ -90,6 +90,13 @@
 (require 'whattf-dt)
 
 ;;
+;; Haskell
+;;
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+
+
+;;
 ;; Common Lisp
 ;;
 ;; Add .cl files to lisp-mode
