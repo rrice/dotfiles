@@ -146,8 +146,6 @@
 ;;
 ;; Add .cl files to lisp-mode
 (add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/redshank"))
 (autoload 'enable-paredit-mode "paredit"
      "Turn on pseudo-structural editing of Lisp code." t)
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -182,7 +180,6 @@
 ;;
 ;; Scala
 ;;
-(add-to-list 'load-path "~/.emacs.d/site-lisp/scala-emacs")
 (require 'scala-mode-auto)
 
 (add-hook 'scala-mode-hook
@@ -200,7 +197,6 @@
 ;;
 ;; Cucumber feature-mode
 ;;
-(add-to-list 'load-path "~/.emacs.d/site-lisp/feature-mode-0.4")
 (require 'feature-mode)
 
 ;;
