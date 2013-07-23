@@ -161,7 +161,12 @@
 (add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 (autoload 'enable-paredit-mode "paredit"
      "Turn on pseudo-structural editing of Lisp code." t)
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
+
+; If quicklisp is installed, then load the slime helper routines
+(let ((ql-slime-helper (expand-file-name "~/quicklisp/slime-helper.el")))
+  (when (file-exists-p ql-slime-helper)
+    (load ql-slime-helper)))
+
 (setq inferior-lisp-program "sbcl")
 (require 'redshank-loader)
 (eval-after-load "redshank-loader"
