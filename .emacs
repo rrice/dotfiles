@@ -76,6 +76,23 @@
 	      (message "Package '%s' already installed." package-name))))
       my-packages)
 
+;;
+;; Startup
+;; 
+(setq-default inhibit-startup-screen t)
+(setq-default initial-scratch-message nil)
+(setq ring-bell-function 'ignore)
+
+;;
+;; Reloading configuration hook
+;;
+(defun reload-config ()
+  "Reloads the current .emacs file"
+  (interactive)
+  (load-file "~/.emacs")
+  (message "Configuration reloaded!"))
+
+(global-set-key [f5] 'reload-config)
 
 
 ;;
@@ -89,11 +106,81 @@
 (setq auto-save-default nil)
 
 ;;
+;; Show line numbers
+;;
+(global-linum-mode t)
+
+;;
+;; Show parentheses
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+
+
+;;
 ;; TAB Completion
 ;;
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
-	   
+
+;;
+;; YASnippet
+;; 
+(require 'yasnippet)
+(add-to-list 'yas/root-directory "~/.emacs.d/snippets")
+(yas/initialize)	   
+;;
+;; Autocomplete
+;;
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete/dict")
+(set-default 'ac-sources
+	     '(ac-source-abbrev
+	       ac-source-dictionary
+	       ac-source-yasnippet
+	       ac-source-words-in-buffer
+	       ac-source-words-in-same-mode-buffers
+	       ac-source-semantic
+	       ac-source-features
+	       ac-source-filename
+	       ac-source-files-in-current-dir
+	       ac-source-files-functions
+	       ))
+
+(ac-config-default)
+(dolist (mode '(
+		c-mode 
+		c++-mode 
+		js2-mode
+		java-mode
+		haskell-mode
+		python-mode
+		ruby-mode
+		css-mode))
+  (add-to-list 'ac-modes mode))
+
+(setq ac-auto-show-menu 2)
+(setq ac-menu-height 20)
+(setq ac-ignore-case nil)
+
+; Language specific hooks for autocompletion.
+(add-hook 'lisp-mode 
+	  (lambda () 
+	    (add-to-list 'ac-sources '(ac-source-symbols ac-source-slime))))
+
+(add-hook 'css-mode
+	  (lambda ()
+	    (add-to-list 'ac-sources '(ac-source-css-property))))
+
+(global-auto-complete-mode t)
+
+;;
+;; Skewer mode hooks
+;;
+;;(add-hook 'js2-mode-hook 'skewer-mode)
+;;(add-hook 'css-mode-hook 'skewer-mode)
+;;(add-hook 'html-mode-hook 'skewer-mode)
+
+
 ;;
 ;; C language hooks
 ;;
@@ -105,13 +192,14 @@
 		c-indent-tabs-mode t
 		c-argdecl-indent 0
 		backward-delet-function nil)
-	
+
   (c-set-style "my-c-style")
   (c-set-offset 'substatement-open '0) ; brackets should be at same indentation level as the statements they open
   (c-set-offset 'inline-open '+)
   (c-set-offset 'block-open '+)
   (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
   (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
+					      
 
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
@@ -137,6 +225,9 @@
 ;;
 ;; Haskell
 ;;
+(add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.lhs\\'" . haskell-mode))
+
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (setq interpreter-mode-alist
       (append interpreter-mode-alist
@@ -191,9 +282,9 @@
 ;;
 ;; Javascript
 ;;
-
-;; Add JSON documents to js-mode
-(add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js$\\'" . js2-mode))
 
 ;;
 ;; Scala
