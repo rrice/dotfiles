@@ -69,12 +69,17 @@
 ;;
 (require 'package)
 (package-initialize)
-(mapc (lambda (package-name)
-	(or (package-installed-p package-name)
-	    (if (y-or-n-p (format "Package '%s' is not installed. Do you want to install? " package-name))
-		(package-install package-name)
-	      (message "Package '%s' already installed." package-name))))
-      my-packages)
+
+(when (not package-archive-contents)
+    (package-refresh-contents))
+
+(defvar my-packages
+    '(list of packages))
+
+(dolist (p my-packages)
+    (when (not (package-installed-p p))
+          (package-install p)))
+
 
 ;;
 ;; Startup
