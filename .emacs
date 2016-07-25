@@ -42,7 +42,6 @@
      edit-server
      paredit
      tidy
-     scala-mode
      feature-mode
      js2-mode
      haskell-mode
@@ -180,14 +179,6 @@
 (global-auto-complete-mode t)
 
 ;;
-;; Skewer mode hooks
-;;
-;;(add-hook 'js2-mode-hook 'skewer-mode)
-;;(add-hook 'css-mode-hook 'skewer-mode)
-;;(add-hook 'html-mode-hook 'skewer-mode)
-
-
-;;
 ;; C language hooks
 ;;
 (defun my-c-mode-hook () 
@@ -218,15 +209,6 @@
 
 (autoload 'flex-mode "flex-mode.el")
 (add-to-list 'auto-mode-alist '("\\.l\\'" . flex-mode))
-
-;;
-;; nXML
-;;
-(add-to-list 'load-path "~/.emacs.d/site-lisp/html5-el")
-(eval-after-load "rng-loc"
-  '(add-to-list 'rng-schema-locating-files "~/.emacs.d/site-lisp/html5-el/schemas.xml"))
-
-(require 'whattf-dt)
 
 ;;
 ;; Haskell
@@ -281,26 +263,11 @@
 (add-to-list 'auto-mode-alist '("\\.scons\\'" . python-mode))
 
 ;;
-;; Erlang
-;;
-;;(require 'erlang-start)
-
-;;
 ;; Javascript
 ;;
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.js$\\'" . js2-mode))
-
-;;
-;; Scala
-;;
-(require 'scala-mode-auto)
-
-(add-hook 'scala-mode-hook
-	  '(lambda ()
-	     (scala-mode-feature-electric-mode)
-	     ))
 
 ;;
 ;; Markdown
