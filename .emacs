@@ -120,6 +120,11 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
+;;
+;; Hide toolbar
+;;
+
+(tool-bar-mode -1)
 
 ;;
 ;; TAB Completion
