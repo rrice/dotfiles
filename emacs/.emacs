@@ -30,8 +30,7 @@
 ;; Package repositories
 ;;
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")))
 
 ;;
 ;; Dependent packages
@@ -41,25 +40,21 @@
   '( markdown-mode
      edit-server
      paredit
-     tidy
      feature-mode
      js2-mode
      haskell-mode
      slime
      redshank
-     slime-js
-     tfs
      uuid
      virtualenv
      yaml-mode
-     yasnippet-bundle
+     yasnippet
      rspec-mode
      jinja2-mode
      graphviz-dot-mode
      erlang
      csharp-mode
      csv-mode
-     crontab-mode
      chicken-scheme
      auto-complete))
 
