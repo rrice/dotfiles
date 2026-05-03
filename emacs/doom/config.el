@@ -3,11 +3,32 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Ralph Allan Rice"
       user-mail-address "ralph.rice@gmail.com")
+
+;; Code formatting
+(apheleia-global-mode +1)
+
+;; Javascript / Typescript / JSON config
+(setq js-indent-level 2)
+
+;; Web-mode customizations
+(add-hook! 'web-mode
+           "Hooks for web-mode"
+           (setq web-mode-markup-indent-offset 2
+                 web-mode-css-indent-offset 2
+                 web-mode-code-indent-offset 2))
+
+(use-package! treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
+
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
